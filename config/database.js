@@ -3,6 +3,9 @@ const env = require('./envoirment').dev;
 
 require('../models/User');
 require('../models/Playlist');
+require('../models/Category');
+require('../models/Album');
+require('../models/Song');
 
 mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
