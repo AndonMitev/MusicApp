@@ -1,6 +1,12 @@
 const mongoose = require('mongoose');
 const env = require('./envoirment').dev;
+
 require('../models/User');
+require('../models/Playlist');
+
+mongoose.set('useFindAndModify', false);
+mongoose.set('useCreateIndex', true);
+mongoose.set('useNewUrlParser', true);
 
 const dbConnection = mongoose.connect(
   env.connectionString,
@@ -12,7 +18,7 @@ const dbConnection = mongoose.connect(
     }
 
     console.log(`Mongoose is ready!`);
-  },
+  }
 );
 
 module.exports = dbConnection;
