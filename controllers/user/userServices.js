@@ -1,7 +1,6 @@
 const User = require('mongoose').model('User');
 const router = require('express').Router();
 const bcrypt = require('bcrypt');
-const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const env = require('../../config/envoirment');
 
@@ -30,34 +29,36 @@ const registerUser = async (req, res) => {
   }
 };
 
-const loginUser = (req, res) => {
-  passport.authenticate('local', { session: false }, (err, user, info) => {
-    if (err || !user) {
-      return res.status(401).json({
-        message: info || 'Login error',
-        user
-      });
+const loginUser = async (req, res) => {
+  try {
+    const user = await User.findOne({ username: req.body.username });
+
+    if (!user) {
+      return res.status(401).json({ message: 'Invalid data' });
     }
 
-    req.login(user, { session: false }, err => {
-      if (err) {
-        res.send(err);
-      }
+    const isValidPassword = await bcrypt.compare(
+      req.body.password,
+      user.hashedPassword
+    );
 
-      const { username, email, _id } = user;
-      jwt.sign(
-        { username, _id },
-        env.dev.JWT_KEY,
-        { expiresIn: '2h' },
-        (error, token) => {
-          if (error) {
-            return res.json({ error });
-          }
-          return res.status(200).json({ username, email, _id, token });
-        }
-      );
+    if (!isValidPassword) {
+      return res.status(401).json({ message: 'Invalid data' });
+    }
+
+    const { email, username, _id } = user;
+    const token = await jwt.sign({ email, username, _id }, env.dev.JWT_KEY, {
+      expiresIn: '1h'
     });
-  })(req, res);
+
+    return res
+      .status(200)
+      .json({ message: 'Successfully logged', token, email, username, _id });
+  } catch (error) {
+    return res.status(500).json({
+      error
+    });
+  }
 };
 
 const deleteUser = async (req, res) => {
@@ -70,7 +71,6 @@ const deleteUser = async (req, res) => {
         message: 'User were succesfully deleted.'
       });
     }
-
   } catch (error) {
     res.status(500).json({ error });
   }

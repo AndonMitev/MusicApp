@@ -13,6 +13,8 @@ const postPlaylist = (req, res) => {
   });
 };
 
-router.get('/my', playlist).post('/add', checkAuth, postPlaylist);
+router
+  .get('/my', playlist)
+  .post('/add', checkAuth, postPlaylist);
 
 module.exports = router;

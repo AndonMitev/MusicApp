@@ -1,7 +1,7 @@
 const express = require('express');
 const env = require('./config/envoirment');
 require('./config/database');
-require('./passport/passport-sign-in');
+
 const app = express();
 
 require('./config/express')(app);
