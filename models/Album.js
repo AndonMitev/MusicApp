@@ -3,7 +3,7 @@ const ObjectId = mongoose.SchemaTypes.ObjectId;
 
 const albumSchema = new mongoose.Schema({
   title: { type: String, required: [true, 'Title is required'] },
-  image: { type: String, required: [true, 'Image is required'] },
+  image: { type: String },
   year: { type: Number, required: [true, 'Year is required'] },
   category: { type: String, required: [true, 'Category is required'] },
   songs: [{ type: ObjectId, default: [] }],
