@@ -1,9 +1,10 @@
-import { NgModule } from '@angular/core'
-import { CommonModule } from '@angular/common'
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
-import {RegisterService } from './services/auth/register.service'
+import { crudMethods } from './services/crud';
+import { userServices } from './services/auth';
 
 @NgModule({
-  providers: [RegisterService]
+  providers: [...crudMethods, ...userServices]
 })
 export class ServiceModule {}

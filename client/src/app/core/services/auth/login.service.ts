@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
+
 import { Post } from '../crud/post-method.service';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class Register {
+export class Login {
   constructor(private http: Post) {}
 
-  registerUser<T>(body: T): Observable<T> {
-    return this.http.post<T>('user', 'register', body);
+  loginUser<T>(data: T): Observable<T> {
+    return this.http.post('user', 'login', data);
   }
 }

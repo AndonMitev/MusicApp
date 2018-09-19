@@ -1,15 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { baseUrl } from './base-url';
 import { Observable } from 'rxjs';
+
+import { baseUrl } from './base-url';
 
 @Injectable({
   providedIn: 'root'
 })
-export class Post {
+export class Put {
   constructor(private http: HttpClient) {}
 
-  post<T>(currentModule: string, endPoint: string, body: T): Observable<T> {
-    return this.http.post<T>(baseUrl(currentModule, endPoint), body);
+  put<T>(currentModule: string, endPoint: string, body: T): Observable<Object> {
+    return this.http.put<T>(baseUrl(currentModule, endPoint), body);
   }
 }

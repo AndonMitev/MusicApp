@@ -5,7 +5,7 @@ import {
   Validators,
   AbstractControl
 } from '@angular/forms';
-import { RegisterService } from '../../../core/services/auth/register.service';
+import { Register } from '../../../core/services/auth/register.service';
 import { RegisterInputModel } from '../../../core/models/input-models/register.model';
 
 @Component({
@@ -16,7 +16,7 @@ import { RegisterInputModel } from '../../../core/models/input-models/register.m
 export class RegisterComponent implements OnInit {
   public registerForm: FormGroup;
   public userModel: RegisterInputModel;
-  constructor(private fb: FormBuilder, private userSerivce: RegisterService) {}
+  constructor(private fb: FormBuilder, private userSerivce: Register) {}
 
   public ngOnInit(): void {
     this.initializeRegisterForm();
