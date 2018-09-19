@@ -1,0 +1,42 @@
+<div class="row">
+
+  <div class="col-md-6">
+    <h1 class="text-center">Register</h1>
+    <form [formGroup]=registerForm (ngSubmit)="handleOnSubmit()" class="">
+
+      <mat-form-field class="form-group col-md-12">
+        <input type="text" matInput [formControl]="username" placeholder="Username" [errorStateMatcher]="matcher">
+        <mat-error *ngIf="username.hasError('required')">
+          Username is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form-group col-md-6">
+        <input type="password" matInput formControlName="password" placeholder="Password" [errorStateMatcher]="matcher">
+        <mat-error *ngIf="password.hasError('required')">
+          Password is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form-group col-md-6">
+        <input type="password" matInput formControlName="confirmPassword" placeholder="Confirm password"
+          [errorStateMatcher]="matcher">
+        <mat-error *ngIf="confirmPassword.hasError('required')">
+          Confirm password is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form-group col-md-6">
+        <input type="email" matInput formControlName="email" placeholder="Email" [errorStateMatcher]="matcher" />
+        <mat-error *ngIf="email.hasError('required')">Email is required</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form-group col-md-6">
+        <input type="email" matInput formControlName="confirmEmail" placeholder="Confirm email" [errorStateMatcher]="matcher" />
+        <mat-error *ngIf="confirmEmail.hasError('required')">Confirm email is required</mat-error>
+      </mat-form-field>
+
+      <button [disabled]="registerForm.invalid" type="submit" class="float-right mr-3" mat-flat-button color="primary">Register</button>
+    </form>
+  </div>
+</div>
