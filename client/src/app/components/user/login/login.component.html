@@ -1,0 +1,19 @@
+<h1 class="text-center">Login</h1>
+
+<form [formGroup]="loginForm" (ngSubmit)="submitLoginForm()">
+  <mat-form-field class="col-md-12 form-group">
+    <input type="text" matInput formControlName="username" placeholder="Username" [errorStateMatcher]="matcher" />
+    <mat-error *ngIf="username.hasError('required')">
+      Username is required
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="col-md-12 form-group">
+    <input type="password" matInput formControlName="password" placeholder="Password" [errorStateMatcher]="matcher" />
+    <mat-error *ngIf="password.hasError('required')">
+      Password is required
+    </mat-error>
+  </mat-form-field>
+
+  <button [disabled]="loginForm.invalid || isClicked" mat-flat-button class="float-right mr-3">Login</button>
+</form>

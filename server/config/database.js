@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const env = require('./envoirment').dev;
-
+mongoose.Promise = global.Promise;
 require('../models/User');
 require('../models/Playlist');
 require('../models/Category');

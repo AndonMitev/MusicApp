@@ -36,8 +36,15 @@ export class RegisterComponent implements OnInit {
     let userData = this.registerForm.value;
     delete userData['confirmPassword'];
     delete userData['confirmEmail'];
+
+    this.userModel = new RegisterInputModel(
+      userData['username'],
+      userData['password'],
+      userData['email']
+    );
+
     this.userSerivce
-      .registerUser(userData)
+      .registerUser(this.userModel)
       .subscribe(res => console.log(res), err => console.log(err));
   }
 
