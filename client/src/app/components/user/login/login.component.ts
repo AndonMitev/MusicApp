@@ -38,7 +38,9 @@ export class LoginComponent implements OnInit {
     );
     this.userService
       .loginUser(this.loginModel)
-      .subscribe(res => console.log(res), err => console.log(err));
+      .subscribe(res => {
+        this.userService.saveUserData(res);
+      });
   }
 
   public get username(): AbstractControl {

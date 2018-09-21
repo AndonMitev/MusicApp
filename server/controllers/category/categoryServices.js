@@ -8,23 +8,45 @@ const createCategory = async (req, res) => {
     const { title, imageUrl } = req.body;
     const category = await Category.create({ title, imageUrl });
 
-    return json(res, 201, category);
+    return res.status(201).json(category);
   } catch (error) {
-    return json(res, 400, error);
+    return res.status(400).json(error);
   }
 };
 
 const getCategories = async (req, res) => {
   try {
+    console.log(req.userData);
     const categories = await Category.find();
-    return json(res, 200, 'All categories', categories);
+    return res.status(200).json(categories);
   } catch (error) {
-    return json(res, 404, 'Not found');
+    return res.status(400).error;
+  }
+};
+
+const likeCategory = async (req, res) => {
+  try {
+    const categoryId = req.params.id;
+    const userId = req.userData._id;
+    let category = await Category.findById(categoryId);
+
+    if (category.likes.indexOf(userId) !== -1) {
+      category.likes = category.likes.filter(id => id != userId);
+    } else {
+      category.likes.push(userId);
+    }
+
+    await category.save();
+
+    return res.status(200).json(category);
+  } catch (error) {
+    return res.status(400).json(error);
   }
 };
 
 router
   .post('/categories/create', createCategory)
-  .get('/categories/all', getCategories);
+  .get('/categories/all', getCategories)
+  .put('/categories/like/:id', checkAuth, likeCategory);
 
 module.exports = router;

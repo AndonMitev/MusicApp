@@ -2,8 +2,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
+
+//Interceptors
+import { TokenInterceptor } from './core/interceptors/token-interceptor';
 
 //Custom Modules
 import { AppRoutingModule } from './app.routing.module';
@@ -30,7 +33,13 @@ import { appReducers } from './store/app-reducers';
     ...MaterialModule,
     StoreModule.forRoot(appReducers)
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
