@@ -7,7 +7,8 @@ const songServices = require('../controllers/song/songServices');
 
 router.use('/user', userServices);
 router.use('/playlist', playlistServices);
-router.use('/category', categoryServices);
+//Care
+router.use('/music', categoryServices);
 router.use('/album', albumServices);
 router.use('/song', songServices);
 module.exports = router;

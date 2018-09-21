@@ -5,15 +5,26 @@ const json = require('../../middleware/responseJSON');
 
 const createCategory = async (req, res) => {
   try {
-    const { title } = req.body;
-    const category = await Category.create({ title });
- 
-    return json(res, 201, category)
+    const { title, imageUrl } = req.body;
+    const category = await Category.create({ title, imageUrl });
+
+    return json(res, 201, category);
   } catch (error) {
-    return json(res, 400, error)
+    return json(res, 400, error);
   }
 };
 
-router.post('/create', createCategory);
+const getCategories = async (req, res) => {
+  try {
+    const categories = await Category.find();
+    return json(res, 200, 'All categories', categories);
+  } catch (error) {
+    return json(res, 404, 'Not found');
+  }
+};
 
-module.exports = router
+router
+  .post('/categories/create', createCategory)
+  .get('/categories/all', getCategories);
+
+module.exports = router;

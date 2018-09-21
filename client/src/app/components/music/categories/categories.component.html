@@ -1,0 +1,63 @@
+<div class="col-md-12">
+  <div class="row justify-content-center">
+    <mat-card class="example-card col-md-3 m-3 black-color">
+      <mat-card-header class="justify-content-center fix-header">
+        <mat-card-title class="text-capitalize align-self-start">Jazz</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <img mat-card-image src="http://wallpaperlepi.com/wp-content/uploads/2014/12/Jazz-Text-Music-Wallpaper.png" alt="">
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-icon-button>
+          <mat-icon color="primary" aria-label="Example icon-button with a heart icon">favorite</mat-icon>
+        </button>
+        <span class="fix-color">20 People like this</span>
+      </mat-card-actions>
+    </mat-card>
+    <mat-card class="example-card col-md-3 m-3 black-color">
+      <mat-card-header class="justify-content-center fix-header">
+        <mat-card-title class="text-capitalize align-self-start">Jazz</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <img mat-card-image src="http://wallpaperlepi.com/wp-content/uploads/2014/12/Jazz-Text-Music-Wallpaper.png" alt="">
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-icon-button>
+          <mat-icon color="primary" aria-label="Example icon-button with a heart icon">favorite</mat-icon>
+        </button>
+      </mat-card-actions>
+    </mat-card>
+    <mat-card class="example-card col-md-3 m-3 black-color">
+      <mat-card-header class="justify-content-center fix-header">
+        <mat-card-title class="text-capitalize align-self-start">Jazz</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <img mat-card-image src="http://wallpaperlepi.com/wp-content/uploads/2014/12/Jazz-Text-Music-Wallpaper.png" alt="">
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-icon-button>
+          <mat-icon color="primary" aria-label="Example icon-button with a heart icon">favorite</mat-icon>
+        </button>
+      </mat-card-actions>
+    </mat-card>
+    <mat-card class="example-card col-md-3 m-3 black-color">
+      <mat-card-header class="justify-content-center fix-header">
+        <mat-card-title class="text-capitalize align-self-start">Jazz</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <img mat-card-image src="http://wallpaperlepi.com/wp-content/uploads/2014/12/Jazz-Text-Music-Wallpaper.png" alt="">
+      </mat-card-content>
+      <mat-card-actions>
+
+        <button mat-icon-button>
+          <mat-icon color="primary" aria-label="Example icon-button with a heart icon">favorite</mat-icon>
+        </button>
+        <span class="fix-color">20 People like this</span>
+
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
+<div *ngIf="categories$ | async as categories">
+  {{categories.data | json}}
+</div>
