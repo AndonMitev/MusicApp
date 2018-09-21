@@ -2,4 +2,5 @@ import { ViewModelCategories } from '../../core/models/view-models/categories.mo
 
 export interface CategoriesState {
   all: ViewModelCategories[];
+  details: ViewModelCategories
 }

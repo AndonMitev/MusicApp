@@ -4,8 +4,7 @@ import { CommonModule } from '@angular/common';
 import { importComponents } from './imp-components';
 import { MusicRoutingModule } from './music.routing.module';
 import { materialModule } from './material.module';
-import { AddCategoryComponent } from './add-category/add-category.component';
-import { LikeCategoryComponent } from './like-category/like-category.component';
+
 
 @NgModule({
   imports: [
@@ -14,6 +13,6 @@ import { LikeCategoryComponent } from './like-category/like-category.component';
     ...materialModule,
     ReactiveFormsModule
   ],
-  declarations: [...importComponents]
+  declarations: [...importComponents,]
 })
 export class MusicModule {}

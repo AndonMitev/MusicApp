@@ -44,9 +44,21 @@ const likeCategory = async (req, res) => {
   }
 };
 
+const categoryDetails = async (req, res) => {
+  try {
+    const categoryId = req.params.id;
+    const category = await Category.findById(categoryId);
+
+    return res.status(200).json(category);
+  } catch (error) {
+    return res.status(400).json(error);
+  }
+};
+
 router
   .post('/categories/create', createCategory)
   .get('/categories/all', getCategories)
-  .put('/categories/like/:id', checkAuth, likeCategory);
+  .put('/categories/like/:id', checkAuth, likeCategory)
+  .get('/categories/details/:id', categoryDetails);
 
 module.exports = router;
