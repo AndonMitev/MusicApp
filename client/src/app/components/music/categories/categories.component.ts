@@ -1,9 +1,14 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { GetAllCategoriesService } from '../../../core/services/categories/get-all.service';
+import { takeUntil } from 'rxjs/operators';
 import { Observable, Subject } from 'rxjs';
 import { Store, select } from '@ngrx/store';
+
+//Service
+import { GetAllCategoriesService } from '../../../core/services/categories/get-all.service';
+//Model
+import { ViewModelCategories } from '../../../core/models/view-models/categories.model';
+//State
 import { AppState } from '../../../store/app-state';
-import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'categories',
@@ -11,7 +16,7 @@ import { takeUntil } from 'rxjs/operators';
   styleUrls: ['./categories.component.css']
 })
 export class CategoriesComponent implements OnInit, OnDestroy {
-  public categories$: Observable<object>;
+  public categories$: Observable<ViewModelCategories[]>;
   private unsubscribe: Subject<void> = new Subject<void>();
 
   constructor(

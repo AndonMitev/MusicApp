@@ -55,6 +55,16 @@ const categoryDetails = async (req, res) => {
   }
 };
 
+const getCategoryByTitle = async (req, res) => {
+  try {
+    const category = await Category.findOne({ title: req.body.title });
+
+    return res.status(200).json(category);
+  } catch (error) {
+    return res.status(400).json(error);
+  }
+};
+
 router
   .post('/categories/create', createCategory)
   .get('/categories/all', getCategories)

@@ -5,12 +5,13 @@ import {
   Validators,
   AbstractControl
 } from '@angular/forms';
-import { CategoryInputModel } from '../../../core/models/input-models/category.model';
-import { Store, select } from '@ngrx/store';
-import { AppState } from '../../../store/app-state';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+
+//Service
 import { AddNewCategoryService } from '../../../core/services/categories/add-category.service';
+//Model
+import { CategoryInputModel } from '../../../core/models/input-models/category.model';
+//State
+import { AppState } from '../../../store/app-state';
 
 @Component({
   selector: 'add-category',
@@ -25,8 +26,7 @@ export class AddCategoryComponent implements OnInit, OnDestroy {
 
   constructor(
     private fb: FormBuilder,
-    private categoryServices: AddNewCategoryService,
-    private store: Store<AppState>
+    private categoryServices: AddNewCategoryService
   ) {
     this.buttonText = 'Add';
     this.isClicked = false;

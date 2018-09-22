@@ -20,7 +20,7 @@ export class GetAllCategoriesService {
 
   public getAllCategories(): Observable<void> {
     return this.http
-      .get('music/categories', 'all')
+      .get<ViewModelCategories[]>('music/categories', 'all')
       .pipe(
         map((categories: ViewModelCategories[]) =>
           this.store.dispatch(new GetAllCategoriesAction(categories))

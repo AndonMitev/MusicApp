@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+//Service
 import { LikeCategoryService } from '../../../core/services/categories/like-category.service';
 
 @Component({

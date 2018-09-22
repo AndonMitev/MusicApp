@@ -6,6 +6,7 @@ import { MusicRoutingModule } from './music.routing.module';
 import { materialModule } from './material.module';
 
 
+
 @NgModule({
   imports: [
     CommonModule,
@@ -13,6 +14,6 @@ import { materialModule } from './material.module';
     ...materialModule,
     ReactiveFormsModule
   ],
-  declarations: [...importComponents,]
+  declarations: [...importComponents]
 })
 export class MusicModule {}

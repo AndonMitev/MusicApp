@@ -9,6 +9,6 @@ router.use('/user', userServices);
 router.use('/playlist', playlistServices);
 //Care
 router.use('/music', categoryServices);
-router.use('/album', albumServices);
+router.use('/music', albumServices);
 router.use('/song', songServices);
 module.exports = router;

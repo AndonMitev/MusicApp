@@ -3,9 +3,13 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Subject, Observable } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { Store, select } from '@ngrx/store';
-import { AppState } from '../../../store/app-state';
+
+//Service
 import { GetCategoryDetailsService } from '../../../core/services/categories/details.service';
+//Model
 import { ViewModelCategories } from '../../../core/models/view-models/categories.model';
+//State
+import { AppState } from '../../../store/app-state';
 
 @Component({
   selector: 'details-category',

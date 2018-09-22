@@ -1,0 +1,45 @@
+<h1 class="text-center m-5">Add new album <i class="material-icons">
+    library_music
+  </i></h1>
+<div class="col-md-12">
+  <form [formGroup]="albumForm" (ngSubmit)="submitAlbumForm()">
+    <mat-form-field class="col-md-6">
+      <input type="text" matInput formControlName="title" placeholder="Album name" />
+      <i matSuffix class="material-icons float-right">
+        album
+      </i>
+    </mat-form-field>
+
+    <mat-form-field class="col-md-6">
+      <input type="text" matInput formControlName="image" placeholder="Album cover" />
+      <i matSuffix class="material-icons">
+        collections
+      </i>
+    </mat-form-field>
+
+    <mat-form-field class="col-md-6">
+      <input type="number" matInput formControlName="year" placeholder="Year of release" />
+      <i matSuffix class="material-icons">
+        new_releases
+      </i>
+    </mat-form-field>
+
+    <mat-form-field class="col-md-6">
+      <mat-select placeholder="Music category" formControlName="category">
+        <mat-option *ngFor="let category of categories" [value]="category"> {{category}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="col-md-6">
+      <input type="text" matInput formControlName="author" placeholder="Author or Group" />
+      <i matSuffix class="material-icons">
+        account_circle
+      </i>
+
+    </mat-form-field>
+
+    <button mat-stroked-button color="primary" class="ml-3" type="submit">Add <i class="material-icons">
+        done
+      </i></button>
+  </form>
+</div>

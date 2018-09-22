@@ -6,7 +6,7 @@ const json = require('../../middleware/responseJSON');
 
 const createAlbum = async (req, res) => {
   try {
-    let { title, image, year, category } = req.body;
+    let { title, image, year, category, author } = req.body;
     year = +year;
 
     const selectedCategory = await Category.findOne()
@@ -19,7 +19,7 @@ const createAlbum = async (req, res) => {
 
     category = selectedCategory.title;
 
-    const album = await Album.create({ title, image, year, category });
+    const album = await Album.create({ title, image, year, category, author });
     const albumId = mongoose.Types.ObjectId(album._id);
     selectedCategory.albums.push(albumId);
     await selectedCategory.save();
@@ -30,6 +30,6 @@ const createAlbum = async (req, res) => {
   }
 };
 
-router.post('/create', createAlbum);
+router.post('/albums/add', createAlbum);
 
 module.exports = router;
