@@ -2,7 +2,6 @@ const router = require('express').Router();
 const mongoose = require('mongoose');
 const Song = mongoose.model('Song');
 const Album = mongoose.model('Album');
-const json = require('../../middleware/responseJSON');
 
 const addSong = async (req, res) => {
   try {
@@ -13,7 +12,7 @@ const addSong = async (req, res) => {
       .equals(album);
 
     if (!selectedAlbum) {
-      return json(res, 400, 'Invalid album');
+      return res.status(404).json(`Not Found`);
     }
 
     const song = await Song.create({ title, album, author });
@@ -21,12 +20,12 @@ const addSong = async (req, res) => {
     selectedAlbum.songs.push(songId);
     await selectedAlbum.save();
 
-    return json(res, 201, 'Success', song);
+    return res.status(201).json(song);
   } catch (error) {
-    return json(res, 400, error);
+    return res.status(400).json(error);
   }
 };
 
-router.post('/create', addSong);
+router.post('/songs/add', addSong);
 
 module.exports = router;

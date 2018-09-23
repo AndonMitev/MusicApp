@@ -1,5 +1,5 @@
-import { AlbumInputModel } from "../../core/models/input-models/album.model";
+import { ViewModelAlbum } from "../../core/models/view-models/album.model";
 
 export interface AlbumState {
-  all: AlbumInputModel[]
+  all: ViewModelAlbum[];
 }

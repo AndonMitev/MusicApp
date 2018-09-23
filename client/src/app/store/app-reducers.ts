@@ -1,5 +1,7 @@
 import { categoriesReducer } from './reducers/categories';
+import { albumReducer } from './reducers/albums';
 
 export const appReducers = {
-  categories: categoriesReducer
+  categories: categoriesReducer,
+  albums: albumReducer
 };

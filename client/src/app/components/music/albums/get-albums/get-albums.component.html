@@ -1,0 +1,4 @@
+<h1>All albums</h1>
+<div *ngIf="albums$ | async as albums">
+  {{albums | json}}
+</div>

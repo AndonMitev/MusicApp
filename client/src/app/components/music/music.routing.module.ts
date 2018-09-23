@@ -3,7 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 //Components
 import { GetCategoriesComponent } from './categories/get-categories/get-categories.component';
 import { DetailsCategoryComponent } from './categories/details-category/details-category.component';
-import { AlbumAddComponent } from './album-add/album-add.component';
+import { AlbumAddComponent } from './albums/album-add/album-add.component';
+import { GetAlbumsComponent } from './albums/get-albums/get-albums.component';
+import { AddSongComponent } from './songs/add-song/add-song.component';
 
 const routes: Routes = [
   {
@@ -17,6 +19,14 @@ const routes: Routes = [
   {
     path: 'albums/add',
     component: AlbumAddComponent
+  },
+  {
+    path: 'albums/all',
+    component: GetAlbumsComponent
+  },
+  {
+    path: 'songs/add',
+    component: AddSongComponent
   }
 ];
 

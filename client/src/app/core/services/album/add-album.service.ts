@@ -17,9 +17,3 @@ export class AddAlbumService {
     return this.http.post('music/albums', 'add', album);
   }
 }
-
-/*.pipe(
-        map((album: AlbumInputModel) =>
-          this.store.dispatch(new AddNewAlbumAction(album))
-        )
-      ); */

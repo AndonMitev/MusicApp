@@ -10,10 +10,11 @@ import { LikeCategoryService } from '../../../../core/services/categories/like-c
 export class LikeCategoryComponent {
   @Input('category')
   category;
-  constructor(public categoryServices: LikeCategoryService) {}
+
+  constructor(public categoryServices: LikeCategoryService) { }
 
   public like(): void {
-    const userId = localStorage.getItem('userId');
+    const userId: string = localStorage.getItem('userId');
 
     if (this.category.likes.indexOf(userId) !== -1) {
       this.category.likes = this.category.likes.filter(id => id !== userId);

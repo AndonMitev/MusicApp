@@ -18,7 +18,7 @@ import { AppState } from '../../../../store/app-state';
 })
 export class DetailsCategoryComponent implements OnInit, OnDestroy {
   public category$: Observable<ViewModelCategories>;
-  private unsubscribe: Subject<void> = new Subject<void>();
+  private unsubscribe$: Subject<void> = new Subject<void>();
 
   constructor(
     private actRoute: ActivatedRoute,
@@ -28,22 +28,22 @@ export class DetailsCategoryComponent implements OnInit, OnDestroy {
 
   public ngOnInit(): void {
     this.actRoute.paramMap.subscribe((res: ParamMap) => {
-      const id = res['params']['id'];
+      const id: string = res['params']['id'];
 
       this.categoryServices
         .getCategoryDetails(id)
-        .pipe(takeUntil(this.unsubscribe))
+        .pipe(takeUntil(this.unsubscribe$))
         .subscribe(
           () =>
             (this.category$ = this.store.pipe(
-              select(state => state.categories.details)
+              select((state: AppState) => state.categories.details)
             ))
         );
     });
   }
 
   public ngOnDestroy(): void {
-    this.unsubscribe.next();
-    this.unsubscribe.complete();
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 }

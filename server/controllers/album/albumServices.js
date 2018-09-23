@@ -30,6 +30,15 @@ const createAlbum = async (req, res) => {
   }
 };
 
-router.post('/albums/add', createAlbum);
+const getAllAlbums = async (req, res) => {
+  try {
+    const albums = await Album.find();
+    return res.status(200).json(albums);
+  } catch (error) {
+    return res.status(400).json(error);
+  }
+};
+
+router.post('/albums/add', createAlbum).get('/albums/all', getAllAlbums);
 
 module.exports = router;

@@ -5,13 +5,13 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 //Service
-import { AddAlbumService } from '../../../core/services/album/add-album.service';
-import { GetCategoryByTitleService } from '../../../core/services/categories/get-category-title.service';
-import { EditCategoryService } from '../../../core/services/categories/edit-category.service';
+import { AddAlbumService } from '../../../../core/services/album/add-album.service';
+import { GetCategoryByTitleService } from '../../../../core/services/categories/get-category-title.service';
+import { EditCategoryService } from '../../../../core/services/categories/edit-category.service';
 //State
-import { AppState } from '../../../store/app-state';
+import { AppState } from '../../../../store/app-state';
 //Model
-import { AlbumInputModel } from '../../../core/models/input-models/album.model';
+import { AlbumInputModel } from '../../../../core/models/input-models/album.model';
 
 @Component({
   selector: 'album-add',
@@ -56,7 +56,7 @@ export class AlbumAddComponent implements OnInit, OnDestroy {
     this.albumModel = new AlbumInputModel(
       albumData['title'],
       albumData['image'],
-      albumData['year'],
+      +albumData['year'],
       albumData['author'],
       albumData['category']
     );
@@ -67,16 +67,16 @@ export class AlbumAddComponent implements OnInit, OnDestroy {
       .subscribe(() => {
         this.store
           .pipe(
-            select(state => state.categories.details),
+            select((state: AppState) => state.categories.details),
             takeUntil(this.unsubscribe$)
           )
           .subscribe(category => {
             this.albumService
               .addNewAlbum(this.albumModel)
               .pipe(takeUntil(this.unsubscribe$))
-              .subscribe(res => {
-                category['albums'].push(res['_id']);
-              });
+              .subscribe((res: AlbumInputModel) =>
+                category['albums'].push(res['_id'])
+              );
           });
       });
   }

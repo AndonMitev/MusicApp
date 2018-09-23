@@ -17,7 +17,7 @@ import { AppState } from '../../../../store/app-state';
 })
 export class GetCategoriesComponent implements OnInit, OnDestroy {
   public categories$: Observable<ViewModelCategories[]>;
-  private unsubscribe: Subject<void> = new Subject<void>();
+  private unsubscribe$: Subject<void> = new Subject<void>();
 
   constructor(
     private categoryServices: GetAllCategoriesService,
@@ -27,16 +27,16 @@ export class GetCategoriesComponent implements OnInit, OnDestroy {
   public ngOnInit(): void {
     this.categoryServices
       .getAllCategories()
-      .pipe(takeUntil(this.unsubscribe))
+      .pipe(takeUntil(this.unsubscribe$))
       .subscribe(() => {
         this.categories$ = this.store.pipe(
-          select(state => state.categories.all)
+          select((state: AppState) => state.categories.all)
         );
       });
   }
 
   public ngOnDestroy(): void {
-    this.unsubscribe.next();
-    this.unsubscribe.complete();
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 }

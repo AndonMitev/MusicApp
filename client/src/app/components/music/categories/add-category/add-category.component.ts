@@ -8,7 +8,6 @@ import {
 
 //Service
 import { AddNewCategoryService } from '../../../../core/services/categories/add-category.service';
-
 //Model
 import { CategoryInputModel } from '../../../../core/models/input-models/category.model';
 
@@ -57,7 +56,7 @@ export class AddCategoryComponent implements OnInit, OnDestroy {
     this.categoryServices.addNewCategory(this.categoryModel).subscribe(() => {
       this.buttonText = 'Add';
       this.isClicked = false;
-      this.categoryForm.reset({ title: '', imageUrl: '' });
+      this.categoryForm.reset();
     });
   }
 
