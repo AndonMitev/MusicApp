@@ -14,7 +14,7 @@ const createAlbum = async (req, res) => {
       .equals(category);
 
     if (!selectedCategory) {
-      return json(res, 400, 'Invalid Category');
+      return res.status(400).json(selectedCategory);
     }
 
     category = selectedCategory.title;
@@ -24,9 +24,9 @@ const createAlbum = async (req, res) => {
     selectedCategory.albums.push(albumId);
     await selectedCategory.save();
 
-    return json(res, 201, 'Success', album);
+    return res.status(201).json(album);
   } catch (error) {
-    return json(res, 400, 'Error', error);
+    return res.status(400).json(error);
   }
 };
 

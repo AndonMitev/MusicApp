@@ -1,24 +1,29 @@
 import { Injectable } from '@angular/core';
-import { Get } from '../crud/get-method';
-import { Observable } from 'rxjs';
-import { AppState } from '../../../store/app-state';
 import { Store } from '@ngrx/store';
 import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+
+//Methos
+import { Get } from '../crud/get-method';
+//Action
 import { GetCategoryDetailsAction } from '../../../store/actions/categories';
+//Model
 import { ViewModelCategories } from '../../models/view-models/categories.model';
+//State
+import { AppState } from '../../../store/app-state';
 
 @Injectable({
   providedIn: 'root'
 })
-export class GetCategoryByTitleService {
+export class GetCategoryDetailsService {
   constructor(private http: Get, private store: Store<AppState>) {}
 
-  public getCategoryByTitle(title: string): Observable<void> {
+  public getCategoryDetails(id: string): Observable<void> {
     return this.http
-      .get('music/categories', title)
+      .get<ViewModelCategories>('music/categories', `details/${id}`)
       .pipe(
-        map((category: ViewModelCategories) =>
-          this.store.dispatch(new GetCategoryDetailsAction(category))
+        map((res: ViewModelCategories) =>
+          this.store.dispatch(new GetCategoryDetailsAction(res))
         )
       );
   }

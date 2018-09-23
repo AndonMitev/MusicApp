@@ -1,5 +1,3 @@
-import { NavbarComponent } from './navbar/navbar.component'
+import { MyNavComponent } from './my-nav/my-nav.component';
 
-export const importComponents = [
-  NavbarComponent
-]
+export const importComponents = [MyNavComponent];

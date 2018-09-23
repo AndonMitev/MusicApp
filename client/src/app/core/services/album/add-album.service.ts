@@ -13,13 +13,13 @@ import { AddNewAlbumAction } from '../../../store/actions/albums';
 export class AddAlbumService {
   constructor(private http: Post, private store: Store<AppState>) {}
 
-  public addNewAlbum(album: AlbumInputModel): Observable<void> {
-    return this.http
-      .post('music/album', 'add', album)
-      .pipe(
+  public addNewAlbum(album: AlbumInputModel): Observable<object> {
+    return this.http.post('music/albums', 'add', album);
+  }
+}
+
+/*.pipe(
         map((album: AlbumInputModel) =>
           this.store.dispatch(new AddNewAlbumAction(album))
         )
-      );
-  }
-}
+      ); */

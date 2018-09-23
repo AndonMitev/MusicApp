@@ -57,7 +57,9 @@ const categoryDetails = async (req, res) => {
 
 const getCategoryByTitle = async (req, res) => {
   try {
-    const category = await Category.findOne({ title: req.body.title });
+    const title = req.params.title;
+    const category = await Category.findOne({ title });
+    console.log(category);
 
     return res.status(200).json(category);
   } catch (error) {
@@ -65,10 +67,20 @@ const getCategoryByTitle = async (req, res) => {
   }
 };
 
+/*const editCategory = async (req, res) => {
+  console.log(req.body);
+  try {
+    //const category = await Category.findById
+  } catch (error) {
+    return res.status(400).json(error);
+  }
+}; */
+
 router
   .post('/categories/create', createCategory)
   .get('/categories/all', getCategories)
   .put('/categories/like/:id', checkAuth, likeCategory)
-  .get('/categories/details/:id', categoryDetails);
+  .get('/categories/details/:id', categoryDetails)
+  .get('/categories/:title', getCategoryByTitle);
 
 module.exports = router;

@@ -23,7 +23,6 @@ function addNewCategory(state, payload) {
 }
 
 function getCategoryDetails(state, payload) {
-  console.log(payload);
   return { ...state, details: payload };
 }
 

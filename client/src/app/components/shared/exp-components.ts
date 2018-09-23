@@ -1,5 +1,4 @@
-import { NavbarComponent } from './navbar/navbar.component'
 
-export const exportComponents = [
-  NavbarComponent
-]
+import { MyNavComponent } from './my-nav/my-nav.component';
+
+export const exportComponents = [ MyNavComponent];

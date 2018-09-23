@@ -5,6 +5,7 @@ import { CategoryInputModel } from '../../core/models/input-models/category.mode
 export const getAllCategories = '[CATEGORIES] Get All';
 export const addNewCategory = '[CATEGORY] Add New';
 export const getDetailsCategory = '[CATEGORY] Get Details';
+export const getCategoryTitle = '[CATEGORY] Get Title';
 
 export class GetAllCategoriesAction implements Action {
   readonly type: string = getAllCategories;
@@ -18,6 +19,11 @@ export class AddNewCategoryAction implements Action {
 
 export class GetCategoryDetailsAction implements Action {
   readonly type: string = getDetailsCategory;
+  constructor(public payload: ViewModelCategories) {}
+}
+
+export class GetCategoryByTitle implements Action {
+  readonly type: string = getCategoryTitle;
   constructor(public payload: ViewModelCategories) {}
 }
 
