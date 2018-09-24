@@ -9,7 +9,6 @@ import { MusicRoutingModule } from './music.routing.module';
 //Angular Material
 import { materialModule } from './material.module';
 
-
 @NgModule({
   imports: [
     CommonModule,

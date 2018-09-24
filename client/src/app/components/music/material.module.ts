@@ -5,7 +5,8 @@ import {
   MatFormFieldModule,
   MatInputModule,
   MatSelectModule,
-  MatOptionModule
+  MatOptionModule,
+  MatDividerModule
 } from '@angular/material';
 
 export const materialModule = [
@@ -15,5 +16,6 @@ export const materialModule = [
   MatFormFieldModule,
   MatInputModule,
   MatSelectModule,
-  MatOptionModule
+  MatOptionModule,
+  MatDividerModule
 ];

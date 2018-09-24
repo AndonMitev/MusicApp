@@ -1,14 +1,14 @@
 <h1>Add song</h1>
 <div class="col-md-12">
-  <form [formGroup]="songForm" (ngSubmit)="submitSongForm()">
+  <form *ngIf="albums$ | async as albums" [formGroup]="songForm" (ngSubmit)="submitSongForm()">
 
     <mat-form-field class="col-md-6">
       <input type="text" matInput formControlName="title" placeholder="Name of song" />
     </mat-form-field>
 
     <mat-form-field class="col-md-6">
-      <mat-select placeholder="Pick album">
-        <mat-option>Best of 90</mat-option>
+      <mat-select placeholder="Pick album" formControlName="album">
+        <mat-option *ngFor="let album of albums" [value]=album>{{album.title}}</mat-option>
       </mat-select>
     </mat-form-field>
 

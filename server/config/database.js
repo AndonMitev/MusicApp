@@ -3,7 +3,7 @@ const env = require('./envoirment').dev;
 mongoose.Promise = global.Promise;
 require('../models/User');
 require('../models/Playlist');
-require('../models/Category');
+require('../models/Categories');
 require('../models/Album');
 require('../models/Song');
 

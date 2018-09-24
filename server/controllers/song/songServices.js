@@ -15,8 +15,10 @@ const addSong = async (req, res) => {
       return res.status(404).json(`Not Found`);
     }
 
-    const song = await Song.create({ title, album, author });
+    const selectedAlbumId = mongoose.Types.ObjectId(selectedAlbum._id);
+    const song = await Song.create({ title, author, selectedAlbumId });
     const songId = mongoose.Types.ObjectId(song._id);
+    
     selectedAlbum.songs.push(songId);
     await selectedAlbum.save();
 
@@ -26,6 +28,19 @@ const addSong = async (req, res) => {
   }
 };
 
-router.post('/songs/add', addSong);
+const getSongs = async (req, res) => {
+  try {
+    const songs = await Song.find();
+    if (!songs) {
+      return res.status(404).json('Not found');
+    }
+
+    return res.status(200).json(songs);
+  } catch (error) {
+    return res.status(400).json(error);
+  }
+};
+
+router.post('/songs/add', addSong).get('/songs/all', getSongs);
 
 module.exports = router;

@@ -4,6 +4,6 @@ export class ViewModelAlbum {
     public image: string,
     public year: number,
     public author: string,
-    public category: string
+    public categories: object
   ) {}
 }

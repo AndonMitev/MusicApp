@@ -1,17 +1,17 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Store, select } from '@ngrx/store';
-import { Subject } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 //Service
 import { AddAlbumService } from '../../../../core/services/album/add-album.service';
-import { GetCategoryByTitleService } from '../../../../core/services/categories/get-category-title.service';
-import { EditCategoryService } from '../../../../core/services/categories/edit-category.service';
+import { GetAllCategoriesService } from '../../../../core/services/categories/get-all.service';
 //State
 import { AppState } from '../../../../store/app-state';
 //Model
 import { AlbumInputModel } from '../../../../core/models/input-models/album.model';
+import { CategoryInputModel } from '../../../../core/models/input-models/category.model';
 
 @Component({
   selector: 'album-add',
@@ -20,29 +20,38 @@ import { AlbumInputModel } from '../../../../core/models/input-models/album.mode
 })
 export class AlbumAddComponent implements OnInit, OnDestroy {
   public albumForm: FormGroup;
-  public categories = ['Jazz', 'HIP-HOP'];
+  public categories$: Observable<CategoryInputModel[]>;
   private albumModel: AlbumInputModel;
   private unsubscribe$: Subject<void> = new Subject<void>();
 
   constructor(
     private fb: FormBuilder,
-    private categoryServices: GetCategoryByTitleService,
-    private saveCategory: EditCategoryService,
-    private albumService: AddAlbumService,
+    private albumServices: AddAlbumService,
+    private categoryServices: GetAllCategoriesService,
     private store: Store<AppState>
   ) {}
 
   public ngOnInit(): void {
     this.initializeAlbumForm();
+    this.categoryServices
+      .getAllCategories()
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe(
+        () =>
+          (this.categories$ = this.store.pipe(
+            select((state: AppState) => state.categories.all)
+          ))
+      );
   }
 
   public initializeAlbumForm(): void {
     this.albumForm = this.fb.group({
-      title: 'awa',
-      year: 1950,
-      image: 'awa',
-      category: 'Jazz',
-      author: 'awa'
+      title: 'Recovery',
+      year: 2015,
+      image:
+        'https://upload.wikimedia.org/wikipedia/en/thumb/6/60/Recovery_Album_Cover.jpg/220px-Recovery_Album_Cover.jpg',
+      categories: 'Jazz',
+      author: 'Eminem'
     });
   }
 
@@ -58,26 +67,11 @@ export class AlbumAddComponent implements OnInit, OnDestroy {
       albumData['image'],
       +albumData['year'],
       albumData['author'],
-      albumData['category']
+      albumData['categories']
     );
 
-    this.categoryServices
-      .getCategoryByTitle(albumData['category'])
-      .pipe(takeUntil(this.unsubscribe$))
-      .subscribe(() => {
-        this.store
-          .pipe(
-            select((state: AppState) => state.categories.details),
-            takeUntil(this.unsubscribe$)
-          )
-          .subscribe(category => {
-            this.albumService
-              .addNewAlbum(this.albumModel)
-              .pipe(takeUntil(this.unsubscribe$))
-              .subscribe((res: AlbumInputModel) =>
-                category['albums'].push(res['_id'])
-              );
-          });
-      });
+    this.albumServices
+      .addNewAlbum(this.albumModel)
+      .subscribe(res => console.log(res), err => console.log(err));
   }
 }

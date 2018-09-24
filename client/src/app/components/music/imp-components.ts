@@ -5,6 +5,7 @@ import { DetailsCategoryComponent } from './categories/details-category/details-
 import { AlbumAddComponent } from './albums/album-add/album-add.component';
 import { GetAlbumsComponent } from './albums/get-albums/get-albums.component';
 import { AddSongComponent } from './songs/add-song/add-song.component';
+import { AllSongsComponent } from './songs/all-songs/all-songs.component';
 
 export const importComponents = [
   GetCategoriesComponent,
@@ -13,5 +14,6 @@ export const importComponents = [
   DetailsCategoryComponent,
   AlbumAddComponent,
   GetAlbumsComponent,
-  AddSongComponent
+  AddSongComponent,
+  AllSongsComponent
 ];
