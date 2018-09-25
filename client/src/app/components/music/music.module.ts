@@ -8,13 +8,15 @@ import { importComponents } from './imp-components';
 import { MusicRoutingModule } from './music.routing.module';
 //Angular Material
 import { materialModule } from './material.module';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
     MusicRoutingModule,
-    ...materialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule,
+    ...materialModule
   ],
   declarations: [...importComponents]
 })

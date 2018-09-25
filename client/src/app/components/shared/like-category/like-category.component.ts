@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 //Service
-import { LikeCategoryService } from '../../../../core/services/categories/like-category.service';
+import { LikeCategoryService } from '../../../core/services/categories/like-category.service';
 
 @Component({
   selector: 'like-category',
@@ -11,7 +11,7 @@ export class LikeCategoryComponent {
   @Input('category')
   category;
 
-  constructor(public categoryServices: LikeCategoryService) { }
+  constructor(public categoryServices: LikeCategoryService) {}
 
   public like(): void {
     const userId: string = localStorage.getItem('userId');
