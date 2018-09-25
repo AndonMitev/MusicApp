@@ -1,4 +1,4 @@
-export class RegisterInputModel {
+export class InputRegisterModel {
   constructor(
     public username: string,
     public password: string,

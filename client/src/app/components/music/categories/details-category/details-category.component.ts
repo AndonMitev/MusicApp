@@ -7,7 +7,7 @@ import { Store, select } from '@ngrx/store';
 //Service
 import { GetCategoryDetailsService } from '../../../../core/services/categories/get-details.service';
 //Model
-import { ViewModelCategories } from '../../../../core/models/view-models/categories.model';
+import { ViewCategoriesModel } from '../../../../core/models/view-models/categories.model';
 //State
 import { AppState } from '../../../../store/app-state';
 
@@ -17,7 +17,7 @@ import { AppState } from '../../../../store/app-state';
   styleUrls: ['./details-category.component.css']
 })
 export class DetailsCategoryComponent implements OnInit, OnDestroy {
-  public category$: Observable<ViewModelCategories>;
+  public category$: Observable<ViewCategoriesModel>;
   private unsubscribe$: Subject<void> = new Subject<void>();
 
   constructor(

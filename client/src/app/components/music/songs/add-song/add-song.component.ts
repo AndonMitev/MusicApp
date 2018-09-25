@@ -10,11 +10,11 @@ import { Subject, Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 
 //Service
-import { GetAlbumServices } from '../../../../core/services/album/get-albums.service';
+import { GetAllAlbumsService } from '../../../../core/services/album/get-albums.service';
 import { AddSongService } from '../../../../core/services/song/add-song.service';
 //Model
-import { SongInputModel } from '../../../../core/models/input-models/song.model';
-import { ViewModelAlbum } from '../../../../core/models/view-models/album.model';
+import { InputSongModel } from '../../../../core/models/input-models/song.model';
+import { ViewAlbumModel } from '../../../../core/models/view-models/album.model';
 //State
 import { AppState } from '../../../../store/app-state';
 
@@ -26,13 +26,13 @@ import { AppState } from '../../../../store/app-state';
 })
 export class AddSongComponent implements OnInit, OnDestroy {
   public songForm: FormGroup;
-  public albums$: Observable<ViewModelAlbum[]>;
-  private song: SongInputModel;
+  public albums$: Observable<ViewAlbumModel[]>;
+  private song: InputSongModel;
   private unsubscribe$: Subject<void> = new Subject<void>();
 
   constructor(
     private fb: FormBuilder,
-    private albumService: GetAlbumServices,
+    private albumService: GetAllAlbumsService,
     private songService: AddSongService,
     private store: Store<AppState>
   ) {}
@@ -54,7 +54,7 @@ export class AddSongComponent implements OnInit, OnDestroy {
 
   public submitSongForm(): void {
     const songData = this.songForm.value;
-    this.song = new SongInputModel(
+    this.song = new InputSongModel(
       songData['title'],
       songData['author'],
       songData['album']['title']

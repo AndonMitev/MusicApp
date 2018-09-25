@@ -8,21 +8,21 @@ import { Get } from '../crud/get-method';
 //Action
 import { GetAllAlbumsAction } from '../../../store/actions/albums';
 //Model
-import { ViewModelAlbum } from '../../models/view-models/album.model';
+import { ViewAlbumModel } from '../../models/view-models/album.model';
 //State
 import { AppState } from '../../../store/app-state';
 
 @Injectable({
   providedIn: 'root'
 })
-export class GetAlbumServices {
+export class GetAllAlbumsService {
   constructor(private http: Get, private store: Store<AppState>) {}
 
   public getAlbums(): Observable<void> {
     return this.http
       .get('music/albums', 'all')
       .pipe(
-        map((albums: ViewModelAlbum[]) =>
+        map((albums: ViewAlbumModel[]) =>
           this.store.dispatch(new GetAllAlbumsAction(albums))
         )
       );

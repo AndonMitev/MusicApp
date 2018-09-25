@@ -8,7 +8,7 @@ import { Get } from '../crud/get-method';
 //Action
 import { GetAllCategoriesAction } from '../../../store/actions/categories';
 //Model
-import { ViewModelCategories } from '../../models/view-models/categories.model';
+import { ViewCategoriesModel } from '../../models/view-models/categories.model';
 //State
 import { AppState } from '../../../store/app-state';
 
@@ -20,9 +20,9 @@ export class GetAllCategoriesService {
 
   public getAllCategories(): Observable<void> {
     return this.http
-      .get<ViewModelCategories[]>('music/categories', 'all')
+      .get<ViewCategoriesModel[]>('music/categories', 'all')
       .pipe(
-        map((categories: ViewModelCategories[]) =>
+        map((categories: ViewCategoriesModel[]) =>
           this.store.dispatch(new GetAllCategoriesAction(categories))
         )
       );

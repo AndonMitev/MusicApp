@@ -1,4 +1,4 @@
-export class ViewModelSong {
+export class ViewSongModel {
   constructor(
     public title: string,
     public author: string,

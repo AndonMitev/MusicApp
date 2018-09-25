@@ -6,7 +6,7 @@ import { Store, select } from '@ngrx/store';
 //Service
 import { GetAllCategoriesService } from '../../../../core/services/categories/get-all.service';
 //Model
-import { ViewModelCategories } from '../../../../core/models/view-models/categories.model';
+import { ViewCategoriesModel } from '../../../../core/models/view-models/categories.model';
 //State
 import { AppState } from '../../../../store/app-state';
 
@@ -16,7 +16,7 @@ import { AppState } from '../../../../store/app-state';
   styleUrls: ['./get-categories.component.css']
 })
 export class GetCategoriesComponent implements OnInit, OnDestroy {
-  public categories$: Observable<ViewModelCategories[]>;
+  public categories$: Observable<ViewCategoriesModel[]>;
   private unsubscribe$: Subject<void> = new Subject<void>();
 
   constructor(

@@ -1,4 +1,4 @@
-export class ViewModelAlbum {
+export class ViewAlbumModel {
   constructor(
     public title: string,
     public image: string,

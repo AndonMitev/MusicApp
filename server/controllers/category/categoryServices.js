@@ -5,8 +5,12 @@ const json = require('../../middleware/responseJSON');
 
 const createCategory = async (req, res) => {
   try {
-    const { title, imageUrl } = req.body;
-    const category = await Categories.create({ title, imageUrl });
+    const { title, imageUrl, description } = req.body;
+    const category = await Categories.create({
+      title,
+      imageUrl,
+      description
+    });
 
     return res.status(201).json(category);
   } catch (error) {
@@ -47,7 +51,7 @@ const likeCategory = async (req, res) => {
 const categoryDetails = async (req, res) => {
   try {
     const categoryId = req.params.id;
-    const category = await Categories.findById(categoryId);
+    const category = await Categories.findById(categoryId).populate('albums');
 
     return res.status(200).json(category);
   } catch (error) {

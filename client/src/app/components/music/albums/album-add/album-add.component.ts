@@ -10,8 +10,8 @@ import { GetAllCategoriesService } from '../../../../core/services/categories/ge
 //State
 import { AppState } from '../../../../store/app-state';
 //Model
-import { AlbumInputModel } from '../../../../core/models/input-models/album.model';
-import { CategoryInputModel } from '../../../../core/models/input-models/category.model';
+import { InputAlbumModel } from '../../../../core/models/input-models/album.model';
+import { InputCategoryModel } from '../../../../core/models/input-models/category.model';
 
 @Component({
   selector: 'album-add',
@@ -20,8 +20,8 @@ import { CategoryInputModel } from '../../../../core/models/input-models/categor
 })
 export class AlbumAddComponent implements OnInit, OnDestroy {
   public albumForm: FormGroup;
-  public categories$: Observable<CategoryInputModel[]>;
-  private albumModel: AlbumInputModel;
+  public categories$: Observable<InputCategoryModel[]>;
+  private albumModel: InputAlbumModel;
   private unsubscribe$: Subject<void> = new Subject<void>();
 
   constructor(
@@ -62,7 +62,7 @@ export class AlbumAddComponent implements OnInit, OnDestroy {
 
   public submitAlbumForm(): void {
     const albumData = this.albumForm.value;
-    this.albumModel = new AlbumInputModel(
+    this.albumModel = new InputAlbumModel(
       albumData['title'],
       albumData['image'],
       +albumData['year'],

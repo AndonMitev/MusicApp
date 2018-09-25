@@ -7,9 +7,9 @@ import {
 } from '@angular/forms';
 
 //Service
-import { AddNewCategoryService } from '../../../../core/services/categories/add-category.service';
+import { AddCategoryService } from '../../../../core/services/categories/add-category.service';
 //Model
-import { CategoryInputModel } from '../../../../core/models/input-models/category.model';
+import { InputCategoryModel } from '../../../../core/models/input-models/category.model';
 
 @Component({
   selector: 'add-category',
@@ -20,11 +20,11 @@ export class AddCategoryComponent implements OnInit, OnDestroy {
   public categoryForm: FormGroup;
   public buttonText: string;
   public isClicked: boolean;
-  private categoryModel: CategoryInputModel;
+  private categoryModel: InputCategoryModel;
 
   constructor(
     private fb: FormBuilder,
-    private categoryServices: AddNewCategoryService
+    private categoryServices: AddCategoryService
   ) {
     this.buttonText = 'Add';
     this.isClicked = false;
@@ -39,7 +39,8 @@ export class AddCategoryComponent implements OnInit, OnDestroy {
   public initializeCategoryForm(): void {
     this.categoryForm = this.fb.group({
       title: ['', Validators.required],
-      imageUrl: ['', Validators.required]
+      imageUrl: ['', Validators.required],
+      description: ['', Validators.required]
     });
   }
 
@@ -48,9 +49,10 @@ export class AddCategoryComponent implements OnInit, OnDestroy {
     this.isClicked = true;
 
     const categoryData = this.categoryForm.value;
-    this.categoryModel = new CategoryInputModel(
+    this.categoryModel = new InputCategoryModel(
       categoryData['title'],
-      categoryData['imageUrl']
+      categoryData['imageUrl'],
+      categoryData['description']
     );
 
     this.categoryServices.addNewCategory(this.categoryModel).subscribe(() => {
@@ -66,5 +68,9 @@ export class AddCategoryComponent implements OnInit, OnDestroy {
 
   public get imageUrl(): AbstractControl {
     return this.categoryForm.get('imageUrl');
+  }
+
+  public get description(): AbstractControl {
+    return this.categoryForm.get('description');
   }
 }

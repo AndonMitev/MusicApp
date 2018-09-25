@@ -6,24 +6,24 @@ import { Observable } from 'rxjs';
 //Method
 import { Post } from '../crud/post-method.service';
 //Action
-import { AddNewCategoryAction } from '../../../store/actions/categories';
+import { AddCategoryAction } from '../../../store/actions/categories';
 //Model
-import { CategoryInputModel } from '../../models/input-models/category.model';
+import { InputCategoryModel } from '../../models/input-models/category.model';
 //State
 import { AppState } from '../../../store/app-state';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AddNewCategoryService {
+export class AddCategoryService {
   constructor(private http: Post, private store: Store<AppState>) {}
 
-  public addNewCategory(categoryData: CategoryInputModel): Observable<void> {
+  public addNewCategory(categoryData: InputCategoryModel): Observable<void> {
     return this.http
-      .post<CategoryInputModel>('music/categories', 'create', categoryData)
+      .post<InputCategoryModel>('music/categories', 'create', categoryData)
       .pipe(
-        map((category: CategoryInputModel) =>
-          this.store.dispatch(new AddNewCategoryAction(category))
+        map((category: InputCategoryModel) =>
+          this.store.dispatch(new AddCategoryAction(category))
         )
       );
   }

@@ -1,5 +1,5 @@
 <div class="col-md-12 justify-content-center">
-  <form [formGroup]="categoryForm" (ngSubmit)="submitCategoryForm()" class="offset-3">
+  <form [formGroup]="categoryForm" (ngSubmit)="submitCategoryForm()" class="row justify-content-center">
 
     <mat-form-field class="form-group mr-5">
       <input type="text" matInput formControlName="title" placeholder="Title" [errorStateMatcher]="matcher" />
@@ -9,6 +9,13 @@
     <mat-form-field class="form-group mr-5">
       <input type="text" matInput formControlName="imageUrl" placeholder="Image Url" [errorStateMatcher]="matcher" />
       <mat-error *ngIf="imageUrl.hasError('required')">Image url is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form-group col-md-12">
+      <textarea rows="6" type="text" matInput formControlName="description" placeholder="Description" [errorStateMatcher]="matcher"></textarea>
+      <mat-error *ngIf="description.hasError('required')">
+        Description is required
+      </mat-error>
     </mat-form-field>
 
     <button mat-flat-button color="primary" type="submit" [disabled]="categoryForm.invalid || isClicked">{{buttonText}}</button>

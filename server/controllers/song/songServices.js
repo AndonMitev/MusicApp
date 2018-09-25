@@ -18,7 +18,7 @@ const addSong = async (req, res) => {
     const selectedAlbumId = mongoose.Types.ObjectId(selectedAlbum._id);
     const song = await Song.create({ title, author, selectedAlbumId });
     const songId = mongoose.Types.ObjectId(song._id);
-    
+
     selectedAlbum.songs.push(songId);
     await selectedAlbum.save();
 
@@ -30,7 +30,7 @@ const addSong = async (req, res) => {
 
 const getSongs = async (req, res) => {
   try {
-    const songs = await Song.find();
+    const songs = await Song.find().populate('selectedAlbumId');
     if (!songs) {
       return res.status(404).json('Not found');
     }

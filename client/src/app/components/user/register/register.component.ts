@@ -6,7 +6,7 @@ import {
   AbstractControl
 } from '@angular/forms';
 import { Register } from '../../../core/services/auth/register.service';
-import { RegisterInputModel } from '../../../core/models/input-models/register.model';
+import { InputRegisterModel } from '../../../core/models/input-models/register.model';
 
 @Component({
   selector: 'register',
@@ -15,7 +15,7 @@ import { RegisterInputModel } from '../../../core/models/input-models/register.m
 })
 export class RegisterComponent implements OnInit {
   public registerForm: FormGroup;
-  public userModel: RegisterInputModel;
+  public userModel: InputRegisterModel;
   constructor(private fb: FormBuilder, private userSerivce: Register) {}
 
   public ngOnInit(): void {
@@ -37,7 +37,7 @@ export class RegisterComponent implements OnInit {
     delete userData['confirmPassword'];
     delete userData['confirmEmail'];
 
-    this.userModel = new RegisterInputModel(
+    this.userModel = new InputRegisterModel(
       userData['username'],
       userData['password'],
       userData['email']

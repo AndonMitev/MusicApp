@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Get } from '../crud/get-method';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { ViewModelSong } from '../../models/view-models/song.model';
+import { ViewSongModel } from '../../models/view-models/song.model';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../store/app-state';
 import { GetAllSongsAction } from '../../../store/actions/song';
@@ -17,7 +17,7 @@ export class GetAllSongsService {
     return this.http
       .get('music/songs', 'all')
       .pipe(
-        map((songs: ViewModelSong[]) =>
+        map((songs: ViewSongModel[]) =>
           this.store.dispatch(new GetAllSongsAction(songs))
         )
       );

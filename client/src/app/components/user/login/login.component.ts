@@ -6,7 +6,7 @@ import {
   AbstractControl
 } from '@angular/forms';
 import { Login } from '../../../core/services/auth/login.service';
-import { LoginInputModel } from '../../../core/models/input-models/login.model';
+import { InputLoginModel } from '../../../core/models/input-models/login.model';
 
 @Component({
   selector: 'login',
@@ -15,7 +15,7 @@ import { LoginInputModel } from '../../../core/models/input-models/login.model';
 })
 export class LoginComponent implements OnInit {
   public loginForm: FormGroup;
-  private loginModel: LoginInputModel;
+  private loginModel: InputLoginModel;
 
   constructor(private fb: FormBuilder, private userService: Login) {}
 
@@ -32,15 +32,13 @@ export class LoginComponent implements OnInit {
 
   public submitLoginForm(): void {
     const userData = this.loginForm.value;
-    this.loginModel = new LoginInputModel(
+    this.loginModel = new InputLoginModel(
       userData['username'],
       userData['password']
     );
-    this.userService
-      .loginUser(this.loginModel)
-      .subscribe(res => {
-        this.userService.saveUserData(res);
-      });
+    this.userService.loginUser(this.loginModel).subscribe(res => {
+      this.userService.saveUserData(res);
+    });
   }
 
   public get username(): AbstractControl {

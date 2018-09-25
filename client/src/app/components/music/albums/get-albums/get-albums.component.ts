@@ -4,9 +4,9 @@ import { Subject, Observable } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 //Service
-import { GetAlbumServices } from '../../../../core/services/album/get-albums.service';
+import { GetAllAlbumsService } from '../../../../core/services/album/get-albums.service';
 //Model
-import { ViewModelAlbum } from '../../../../core/models/view-models/album.model';
+import { ViewAlbumModel } from '../../../../core/models/view-models/album.model';
 //State
 import { AppState } from '../../../../store/app-state';
 
@@ -16,11 +16,11 @@ import { AppState } from '../../../../store/app-state';
   styleUrls: ['./get-albums.component.css']
 })
 export class GetAlbumsComponent implements OnInit, OnDestroy {
-  public albums$: Observable<ViewModelAlbum[]>;
+  public albums$: Observable<ViewAlbumModel[]>;
   private unsubscribe$: Subject<void> = new Subject<void>();
 
   constructor(
-    private albumServices: GetAlbumServices,
+    private albumServices: GetAllAlbumsService,
     private store: Store<AppState>
   ) {}
 

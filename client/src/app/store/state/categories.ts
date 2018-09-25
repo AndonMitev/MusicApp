@@ -1,6 +1,6 @@
-import { ViewModelCategories } from '../../core/models/view-models/categories.model';
+import { ViewCategoriesModel } from '../../core/models/view-models/categories.model';
 
 export interface CategoriesState {
-  all: ViewModelCategories[];
-  details: ViewModelCategories
+  all: ViewCategoriesModel[];
+  details: ViewCategoriesModel;
 }

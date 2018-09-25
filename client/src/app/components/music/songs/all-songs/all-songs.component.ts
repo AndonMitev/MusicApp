@@ -6,7 +6,7 @@ import { Store, select } from '@ngrx/store';
 //Service
 import { GetAllSongsService } from '../../../../core/services/song/get-all-songs.service';
 //Model
-import { ViewModelSong } from '../../../../core/models/view-models/song.model';
+import { ViewSongModel } from '../../../../core/models/view-models/song.model';
 //state
 import { AppState } from '../../../../store/app-state';
 
@@ -16,7 +16,7 @@ import { AppState } from '../../../../store/app-state';
   styleUrls: ['./all-songs.component.css']
 })
 export class AllSongsComponent implements OnInit, OnDestroy {
-  public allSongs$: Observable<ViewModelSong[]>;
+  public allSongs$: Observable<ViewSongModel[]>;
   private unsubscribe$: Subject<void> = new Subject<void>();
 
   constructor(

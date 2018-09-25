@@ -1,18 +1,18 @@
 import { Action } from '@ngrx/store';
-import { SongInputModel } from '../../core/models/input-models/song.model';
-import { ViewModelSong } from '../../core/models/view-models/song.model';
+import { InputSongModel } from '../../core/models/input-models/song.model';
+import { ViewSongModel } from '../../core/models/view-models/song.model';
 
 export const addNewSong = '[SONG] Add New Song';
 export const getAllSongs = '[SONG] Get All Songs';
 
-export class AddNewSongAction implements Action {
+export class AddSongAction implements Action {
   readonly type: string = addNewSong;
-  constructor(public payload: SongInputModel) {}
+  constructor(public payload: InputSongModel) {}
 }
 
 export class GetAllSongsAction implements Action {
   readonly type: string = getAllSongs;
-  constructor(public payload: ViewModelSong[]) {}
+  constructor(public payload: ViewSongModel[]) {}
 }
 
-export type Types = AddNewSongAction | GetAllSongsAction;
+export type Types = AddSongAction | GetAllSongsAction;

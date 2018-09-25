@@ -5,7 +5,7 @@ import { AppState } from '../../../store/app-state';
 import { Store } from '@ngrx/store';
 import { map } from 'rxjs/operators';
 import { GetCategoryDetailsAction } from '../../../store/actions/categories';
-import { ViewModelCategories } from '../../models/view-models/categories.model';
+import { ViewCategoriesModel } from '../../models/view-models/categories.model';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +17,7 @@ export class GetCategoryByTitleService {
     return this.http
       .get('music/categories', title)
       .pipe(
-        map((category: ViewModelCategories) =>
+        map((category: ViewCategoriesModel) =>
           this.store.dispatch(new GetCategoryDetailsAction(category))
         )
       );

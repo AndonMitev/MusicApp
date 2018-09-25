@@ -1,4 +1,4 @@
-export class AlbumInputModel {
+export class InputAlbumModel {
   constructor(
     public title: string,
     public image: string,

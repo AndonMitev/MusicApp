@@ -1,5 +1,5 @@
-import { ViewModelSong } from "../../core/models/view-models/song.model";
+import { ViewSongModel } from "../../core/models/view-models/song.model";
 
 export interface SongState {
-  all: ViewModelSong[]
+  all: ViewSongModel[];
 }
